@@ -72,10 +72,23 @@ const DATA = [
 
 function App() {
   const camera = useRef<CameraType>(null);
+  const inputFile = useRef<HTMLInputElement>(null);
+
   const [isOpen, setIsOpen] = useState(false);
+
+  const onButtonClick = () => {
+    // `current` points to the mounted file input element
+    inputFile?.current?.click();
+  };
 
   return (
     <div>
+      <input
+        type="file"
+        id="file"
+        ref={inputFile}
+        style={{ display: "none" }}
+      />
       {/* <Reset /> */}
 
       {isOpen && (
@@ -97,6 +110,10 @@ function App() {
 
       <Button variant="outlined" onClick={() => setIsOpen(true)}>
         사진 찍기 ~~
+      </Button>
+
+      <Button variant="outlined" onClick={() => onButtonClick()}>
+        앨범 ~~
       </Button>
 
       {/* <button
