@@ -84,7 +84,7 @@ function App() {
   return (
     <div>
       <input
-        type="file"
+        type="image"
         id="file"
         ref={inputFile}
         style={{ display: "none" }}
