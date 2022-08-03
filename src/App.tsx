@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { Camera, CameraType } from "react-camera-pro";
 import { Reset } from "styled-reset";
@@ -94,12 +95,16 @@ function App() {
         />
       )}
 
-      <button
+      <Button variant="outlined" onClick={() => setIsOpen(true)}>
+        사진 찍기 ~~
+      </Button>
+
+      {/* <button
         onClick={() => {
           setIsOpen(true);
           // const photo = camera.current?.takePhoto();
         }}
-      />
+      /> */}
 
       {/* {DATA.map((value) => (
         <CustomTable

@@ -2,6 +2,7 @@
   "name": "ehptest",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://youngsubkim.github.io/WebviewTest/",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
