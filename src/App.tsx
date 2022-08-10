@@ -29,12 +29,7 @@ function App() {
     //   alert(data);
     //   // console.log(data);
     // });
-    // getReactNativeMessage();
-    window.addEventListener("message", (ev) => {
-      const data = JSON.parse(ev.data);
-
-      alert(data);
-    });
+    getReactNativeMessage();
   }, []);
 
   const postMessage = () => {
