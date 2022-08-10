@@ -55,13 +55,14 @@ function App() {
     };
 
     if (window.ReactNativeWebView) {
-      if (isAndroid) {
-        document.addEventListener("message", listener);
-      }
-      if (isIOS) {
-        document.addEventListener("message", listener);
-        window.addEventListener("message", listener);
-      }
+      document.addEventListener("message", listener);
+      window.addEventListener("message", listener);
+      // if (isAndroid) {
+      //   document.addEventListener("message", listener);
+      // }
+      // if (isIOS) {
+      //   window.addEventListener("message", listener);
+      // }
     }
   };
 
