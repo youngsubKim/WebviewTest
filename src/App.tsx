@@ -90,7 +90,9 @@ function App() {
   }, []);
 
   const postMessage = () => {
-    window.postMessage("hello rn");
+    (window as any).ReactNativeWebView.postMessage(
+      JSON.stringify({ event: "hello" })
+    );
   };
 
   return (
