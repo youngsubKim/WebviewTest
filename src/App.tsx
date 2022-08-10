@@ -45,7 +45,7 @@ function App() {
     const listener = (event: any) => {
       const parsedData = JSON.parse(event.data);
 
-      // alert(parsedData?.message);
+      alert(parsedData?.message);
       setMessage(parsedData?.message);
       // alert(event);
       // if (parsedData?.type === "bananaFromApp") {
@@ -57,6 +57,7 @@ function App() {
     if (window.ReactNativeWebView) {
       document.addEventListener("message", listener);
       window.addEventListener("message", listener);
+
       // if (isAndroid) {
       //   document.addEventListener("message", listener);
       // }
