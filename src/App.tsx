@@ -22,7 +22,7 @@ function App() {
     // `current` points to the mounted file input element
     inputFile?.current?.click();
   };
-
+  
   useEffect(() => {
     // window.addEventListener("message", (data) => {
     //   alert(data);
@@ -45,6 +45,7 @@ function App() {
       const parsedData = JSON.parse(event.data);
 
       alert(parsedData);
+      alert(event);
       // if (parsedData?.type === "bananaFromApp") {
       //   setBananaFromApp(parsedData?.payload);
       //   sendReactNativeMessage({ type: 'webReceiveTheToken' });
