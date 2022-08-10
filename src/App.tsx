@@ -29,7 +29,12 @@ function App() {
     //   alert(data);
     //   // console.log(data);
     // });
-    getReactNativeMessage();
+    // getReactNativeMessage();
+    window.addEventListener("message", (ev) => {
+      const data = JSON.parse(ev.data);
+
+      alert(data);
+    });
   }, []);
 
   const postMessage = () => {
@@ -55,8 +60,8 @@ function App() {
     };
 
     if (window.ReactNativeWebView) {
-      document.addEventListener("message", listener);
       window.addEventListener("message", listener);
+      document.addEventListener("message", listener);
 
       // if (isAndroid) {
       //   document.addEventListener("message", listener);
