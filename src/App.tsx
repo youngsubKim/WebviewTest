@@ -59,6 +59,7 @@ function App() {
         document.addEventListener("message", listener);
       }
       if (isIOS) {
+        document.addEventListener("message", listener);
         window.addEventListener("message", listener);
       }
     }
