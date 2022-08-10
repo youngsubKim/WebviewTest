@@ -76,6 +76,7 @@ function App() {
   const inputFile = useRef<HTMLInputElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
+  
 
   const onButtonClick = () => {
     // `current` points to the mounted file input element
@@ -90,8 +91,8 @@ function App() {
   }, []);
 
   const postMessage = () => {
-    (window as any).ReactNativeWebView.postMessage(
-      JSON.stringify({ event: "hello" })
+    window.ReactNativeWebView.postMessage(
+      JSON.stringify({ message: "hello" })
     );
   };
 
