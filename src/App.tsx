@@ -17,6 +17,7 @@ function App() {
   const inputFile = useRef<HTMLInputElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
   const onButtonClick = () => {
     // `current` points to the mounted file input element
@@ -44,7 +45,8 @@ function App() {
     const listener = (event: any) => {
       const parsedData = JSON.parse(event.data);
 
-      alert(parsedData?.message);
+      // alert(parsedData?.message);
+      setMessage(parsedData?.message);
       // alert(event);
       // if (parsedData?.type === "bananaFromApp") {
       //   setBananaFromApp(parsedData?.payload);
@@ -70,6 +72,7 @@ function App() {
         ref={inputFile}
         style={{ display: "none" }}
       />
+      {message && <text>{message}</text>}
       {/* <Reset /> */}
 
       {isOpen && (
