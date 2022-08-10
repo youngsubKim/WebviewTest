@@ -45,7 +45,7 @@ function App() {
     const listener = (event: any) => {
       const parsedData = JSON.parse(event.data);
 
-      alert(parsedData?.message);
+      // alert(parsedData?.message);
       setMessage(parsedData?.message);
       // alert(event);
       // if (parsedData?.type === "bananaFromApp") {
