@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Camera, CameraType } from "react-camera-pro";
 import Iframe from "react-iframe";
 import { Reset } from "styled-reset";
@@ -82,6 +82,17 @@ function App() {
     inputFile?.current?.click();
   };
 
+  useEffect(() => {
+    window.addEventListener("message", (data) => {
+      // alert(data);
+      console.log(data);
+    });
+  }, []);
+
+  const postMessage = () => {
+    window.postMessage("hello rn");
+  };
+
   return (
     <div>
       <input
@@ -117,21 +128,9 @@ function App() {
         앨범 ~~
       </Button>
 
-      <Iframe
-        url="http://www.naver.com"
-        width="450px"
-        height="450px"
-        id="myId"
-        className="myClassname"
-        position="relative"
-      />
-
-      {/* <button
-        onClick={() => {
-          setIsOpen(true);
-          // const photo = camera.current?.takePhoto();
-        }}
-      /> */}
+      <Button variant="outlined" onClick={() => postMessage()}>
+        데이터쏘기~
+      </Button>
 
       {/* {DATA.map((value) => (
         <CustomTable
