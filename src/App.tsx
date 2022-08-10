@@ -5,78 +5,18 @@ import Iframe from "react-iframe";
 import { Reset } from "styled-reset";
 import BorderBox from "./components/BorderBox";
 import CustomTable from "./components/CustomTable";
+import { isMobile, isAndroid, isIOS } from "react-device-detect";
 
-const DATA = [
-  {
-    questionChoiceList: [
-      {
-        choiceScore: 0,
-        choiceDirection: "전혀 그렇지 않다",
-        choiceNo: 1,
-      },
-      {
-        choiceScore: 1,
-        choiceDirection: "가끔 그렇다(한 달 동안 7일 미만)",
-        choiceNo: 2,
-      },
-      {
-        choiceScore: 2,
-        choiceDirection: "종종 그렇다(한 달 동안 14일 미만)",
-        choiceNo: 3,
-      },
-      {
-        choiceScore: 3,
-        choiceDirection: "자주 그렇다(한 달의 절반 이상)",
-        choiceNo: 4,
-      },
-      {
-        choiceScore: 4,
-        choiceDirection: "항상 그렇다(한 달 동안 거의 매일)",
-        choiceNo: 5,
-      },
-    ],
-    questionNo: 1,
-    reactionTitle: "1. 개인적인 문제를 다룰 자신감이 없다.",
-  },
-  {
-    questionChoiceList: [
-      {
-        choiceScore: 0,
-        choiceDirection: "전혀 그렇지 않다",
-        choiceNo: 1,
-      },
-      {
-        choiceScore: 1,
-        choiceDirection: "가끔 그렇다(한 달 동안 7일 미만)",
-        choiceNo: 2,
-      },
-      {
-        choiceScore: 2,
-        choiceDirection: "종종 그렇다(한 달 동안 14일 미만)",
-        choiceNo: 3,
-      },
-      {
-        choiceScore: 3,
-        choiceDirection: "자주 그렇다(한 달의 절반 이상)",
-        choiceNo: 4,
-      },
-      {
-        choiceScore: 4,
-        choiceDirection: "항상 그렇다(한 달 동안 거의 매일)",
-        choiceNo: 5,
-      },
-    ],
-    questionNo: 2,
-    reactionTitle: "2. 꼭 해야 하는 일을 처리할 수 없다고 느낀다.",
-  },
-];
+interface Message {
+  type: string;
+  payload?: any;
+}
 
 function App() {
   const camera = useRef<CameraType>(null);
   const inputFile = useRef<HTMLInputElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
-  
 
   const onButtonClick = () => {
     // `current` points to the mounted file input element
@@ -84,16 +24,41 @@ function App() {
   };
 
   useEffect(() => {
-    window.addEventListener("message", (data) => {
-      // alert(data);
-      console.log(data);
-    });
+    // window.addEventListener("message", (data) => {
+    //   alert(data);
+    //   // console.log(data);
+    // });
+    getReactNativeMessage();
   }, []);
 
   const postMessage = () => {
-    window.ReactNativeWebView.postMessage(
-      JSON.stringify({ message: "hello" })
-    );
+    // 메시지 보낼 땐 그냥 window 함수 사용
+    window.ReactNativeWebView.postMessage(JSON.stringify({ message: "hello" }));
+  };
+
+  const getReactNativeMessage = () => {
+    if (!isMobile) {
+      return;
+    }
+
+    const listener = (event: any) => {
+      const parsedData = JSON.parse(event.data);
+
+      alert(parsedData);
+      // if (parsedData?.type === "bananaFromApp") {
+      //   setBananaFromApp(parsedData?.payload);
+      //   sendReactNativeMessage({ type: 'webReceiveTheToken' });
+      // }
+    };
+
+    if (window.ReactNativeWebView) {
+      if (isAndroid) {
+        document.addEventListener("message", listener);
+      }
+      if (isIOS) {
+        window.addEventListener("message", listener);
+      }
+    }
   };
 
   return (
