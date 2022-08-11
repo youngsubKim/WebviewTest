@@ -76,7 +76,13 @@ function App() {
         style={{ display: "none" }}
       />
       {message && <text>{message}</text>}
-      {message && <img src={message} width="100" height="100" />}
+      {message && (
+        <img
+          src={`data:image/png;base64,${message}`}
+          width="100"
+          height="100"
+        />
+      )}
       {/* <Reset /> */}
 
       {isOpen && (
