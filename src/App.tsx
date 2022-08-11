@@ -78,7 +78,7 @@ function App() {
       {message && <text>{message}</text>}
       {message && (
         <img
-          src={`data:image/png;base64,${message}`}
+          src={`data:image/jpeg;base64,${message}`}
           width="100"
           height="100"
         />
